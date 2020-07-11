@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import View
 from django.views.decorators.http import require_http_methods
 from .models import Conductor, Viaje
 from .forms import ViajeForm
@@ -6,6 +7,14 @@ from django.urls import reverse_lazy, reverse
 from django.shortcuts import redirect
 
 # Create your views here.
+
+
+def home(request):
+    return render(request, "base-login.html", {})
+
+def login(request):
+    return render(request, "forms/signIn.html", {})
+
 @require_http_methods(["GET", "POST"])
 def EmpezarViaje(request):
     if request.method == "POST":

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% load static %}
-
 <html lang="en">
 
 <head>
@@ -46,7 +45,7 @@
                         
                         
                             <span class="pro-user-name ml-1">
-                                {{user.username}} - <a href="{%url 'autos:logout' %}">Cerrar Sesión</a>
+                                {{user.username}} - <a href="{% url 'appeff:logout' %}">Cerrar Sesión</a>
                             </span>
                        
 
@@ -69,19 +68,26 @@
                                 <i class="fe-airplay"></i>Opciones <div class="arrow-down"></div></a>
                             <ul class="submenu">
                                 <li>
-                                    <a href="{% url 'autos:insert.modelo'%}">Registrar Modelo</a>
+                                    {% if perms.appeff.view_viaje %}
+                                    <a href="{% url 'appeff:empezar-viaje' %}">Empezar viaje</a>
+                                    {% endif %}
+                                </li>
+                                
+                                <li>
+                                    {% if perms.appeff.view_auto %}
+                                    <a href="#">Registrar auto</a>
+                                    {% endif %}
                                 </li>
 
                                 <li>
-                                    <a href="{% url 'autos:insert.auto'%}">Registrar Auto</a>
-                                </li>
-
-
-                                <li>
-                                    <a href="{% url 'autos:insert.marca'%}">Registrar Marca</a>
+                                    {% if perms.appeff.view_viaje %}
+                                    <a href="#">ver viaje</a>
+                                    {% endif %}
                                 </li>
                                 <li>
-                                    <a href="{% url 'autos:insert.tipo'%}">Registrar Tipo</a>
+                                    {% if perms.appeff.view_auto %}
+                                    <a href="#">ver puntuacion</a>
+                                    {% endif %}
                                 </li>
                             </ul>
                         </li>
