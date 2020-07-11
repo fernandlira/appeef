@@ -62,4 +62,4 @@ class Favorito(models.Model):
         verbose_name_plural = "Favoritos"
 
     def __str__(self):
-        return self.destino
+        return f"Favorito: {self.destino}"
