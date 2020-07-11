@@ -31,7 +31,7 @@ class ViajeAdmin(admin.ModelAdmin):
 
 
 class FavoritoAdmin(admin.ModelAdmin):
-    list_display = ["id", "user", " distrito", "destino"]
+    list_display = ["id", "user", "distrito", "destino"]
 
 
 admin.site.register(Auto, AutoAdmin)
