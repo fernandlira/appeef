@@ -7,7 +7,14 @@ class Conductor(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     disponibilidad = models.IntegerField(default=0, choices=STATUS)
-    puntuacion = models.FloatField(default=0, choices=STATUS)
+    puntuacion = models.FloatField(default=0)
+
+    class Meta:
+        verbose_name = "Conductor"
+        verbose_name_plural = "Conductores"
+
+    def __str__(self):
+        return self.user.username
 
 
 class Auto(models.Model):
