@@ -7,5 +7,6 @@ urlpatterns = [
     path("", home, name="index"),
     path('login', login, name="login"),
     path("logout/", LogoutView.as_view(), name='logout'),
-    path('empezar-viaje', EmpezarViaje, name='empezar-viaje'),
+    path('empezar-viaje', views.EmpezarViaje, name='empezar-viaje'),
+    path('culminar-viaje/<int:id>', views.CulminarViaje, name='culminar-viaje'),
 ]
