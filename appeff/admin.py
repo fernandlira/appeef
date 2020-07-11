@@ -7,7 +7,7 @@ class AutoAdmin(admin.ModelAdmin):
 
 
 class ViajeAdmin(admin.ModelAdmin):
-    list_display = ["id", "viajero", "conductor", "destino", "precio", "puntuacion"]
+    list_display = ["id", "viajero", "conductor","distrito", "destino", "precio", "puntuacion"]
 
 
 class ConductorAdmin(admin.ModelAdmin):

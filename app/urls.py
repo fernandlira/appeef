@@ -20,5 +20,4 @@ from authentication.views import Login
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', Login.as_view(), name='login'),
-    path('', include(('appeff.urls','app'))),
 ]
