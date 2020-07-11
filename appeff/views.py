@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.views.decorators.http import require_http_methods
 from .models import Conductor, Viaje
-from .forms import ViajeForm, AceptarForm
+from .forms import ViajeForm, AceptarForm, PuntuarForm
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import redirect
+from django.db.models import Avg
 
 # Create your views here.
 
@@ -33,17 +34,18 @@ def EmpezarViaje(request):
 
 @require_http_methods(["GET", "POST"])
 def AceptarViaje(request,id=1):
-    form = AceptarForm(request.POST)
-    if form.is_valid():
-        viaje = Viaje.objects.get(pk=id)
-        viaje.conductor = Conductor.objects.get(pk=request.user.id)
-        viaje.status="1"
-        viaje.precio=form.cleaned_data['precio']
-        viaje.save()
-        conductor = Conductor.objects.get(pk=viaje.conductor.id)
-        conductor.disponibilidad = 1
-        conductor.save()
-        return redirect('appeff:index')
+    if request.method == "POST":
+        form = AceptarForm(request.POST)
+        if form.is_valid():
+            viaje = Viaje.objects.get(pk=id)
+            viaje.conductor = Conductor.objects.get(pk=request.user.id)
+            viaje.status="1"
+            viaje.precio=form.cleaned_data['precio']
+            viaje.save()
+            conductor = Conductor.objects.get(pk=viaje.conductor.id)
+            conductor.disponibilidad = 1
+            conductor.save()
+            return redirect('appeff:index')
     else:
         form = AceptarForm
         return render(request, "viajes/aceptar-viaje.html", {"form": form})
@@ -52,7 +54,28 @@ def AceptarViaje(request,id=1):
 
 def CulminarViaje(request,id=1):
     viaje = Viaje.objects.get(pk=id)
-    viaje.status=1
-    print(viaje_conductor_disponibilidad)
+    viaje.status="2"
     viaje.save()
+    conductor = Conductor.objects.get(pk=viaje.conductor.id)
+    conductor.disponibilidad = 0
+    conductor.save()
     return redirect('appeff:index')
+
+@require_http_methods(["GET", "POST"])
+def PuntuarViaje(request,id=1):
+    if request.method == "POST":
+        form = PuntuarForm(request.POST)
+        if form.is_valid():
+            viaje = Viaje.objects.get(pk=id)
+            viaje.puntuacion = form.cleaned_data['puntuacion']
+            viaje.save()
+            conductor = Conductor.objects.get(pk=viaje.conductor.id)
+            viajes_terminados = Viaje.objects.filter(conductor=conductor,status='2',puntuacion__isnull=False).count()
+            promedio = Viaje.objects.filter(conductor=conductor,status='2',puntuacion__isnull=False).aggregate(Avg('puntuacion'))
+            #print(promedio.get('puntuacion__avg'))
+            conductor.puntuacion = promedio.get('puntuacion__avg')
+            conductor.save()
+            return redirect('appeff:index')
+    else:
+        form = PuntuarForm
+        return render(request, "viajes/puntuar-viaje.html", {"form": form})

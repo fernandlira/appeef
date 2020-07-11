@@ -42,7 +42,7 @@
                     {%if viaje.puntuacion is not null  %}
                     {{viaje.puntuacion}}
                     {% else %}
-                    <a class="btn btn-primary" href="../{{asistencia.id}}/comentar" role="button">Puntuar</a>
+                    <a class="btn btn-primary" href="{% url 'appeff:puntuar-viaje' viaje.id%}" role="button">Puntuar</a>
                     {% endif %}
                     {% endif %}
                 </td> 
