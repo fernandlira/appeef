@@ -67,15 +67,25 @@
                             <a href="#">
                                 <i class="fe-airplay"></i>Opciones <div class="arrow-down"></div></a>
                             <ul class="submenu">
+                          
                                 <li>
-                                    {% if perms.appeff.change_favoritos %}
-                                    <a href="{% url 'appeff:empezar-viaje' %}">Empezar viaje</a>
+                                    {% if perms.appeff.change_favorito %}
+                                    <a href="{% url 'appeff:empezar.viaje' %}">INICIAR VIAJE</a>
                                     {% endif %}
                                 </li>
-
                                 <li>
                                     {% if perms.appeff.change_viaje %}
-                                    <a href="#">Iniciar Viaje</a>
+                                    <a href="{% url 'appeff:aceptar.viaje' %}">ACEPTAR VIAJE</a>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if perms.appeff.change_viaje %}
+                                    <a href="{% url 'appeff:culminar.viaje' %}">CULMINAR VIAJE</a>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if perms.appeff.change_viaje %}
+                                    <a href="{% url 'appeff:puntuar.viaje' %}">PUNTUAR VIAJE</a>
                                     {% endif %}
                                 </li>
 

@@ -5,9 +5,8 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path("", home, name="index"),
-    path("viajes-usuario", listadoViajesU, name="listar-viajes-usuario"),
-    #path("viajes-conductor", home, name="listar-viajes-conductor"),
-    path("puntuar-viaje/<int:id>", PuntuarViaje, name="puntuar-viaje"),
+    #path("viajes-usuario", listadoViajesU, name="listar-viajes-usuario"),
+    path("puntuar.viaje/<int:id>", PuntuarViaje, name="puntuar.viaje"),
     path('login', login, name="login"),
     path("logout/", LogoutView.as_view(), name='logout'),
     path('empezar-viaje', EmpezarViaje, name='empezar-viaje'),
