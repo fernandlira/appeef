@@ -81,7 +81,7 @@
 
                                 <li>
                                     {% if perms.appeff.view_viaje %}
-                                    <a href="#">ver viajes</a>
+                                    <a href="{% url 'appeff:listar-viaje' %}">ver viajes</a>
                                     {% endif %}
                                 </li>
 

@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import View
 from django.views.decorators.http import require_http_methods
 from .models import Conductor, Viaje
-from .forms import ViajeForm
+from django.contrib.auth.models import User
+from .forms import ViajeForm, ListForm
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import redirect
 
@@ -14,6 +14,14 @@ def home(request):
 
 def login(request):
     return render(request, "forms/signIn.html", {})
+
+def listar_viajes(request, id=1):
+    viajes = Viaje.objects.filter(viajero=request.user)
+    return render(
+        request,
+        "viajes/lista-viajes.html",
+        { "viajes": viajes },
+    )
 
 @require_http_methods(["GET", "POST"])
 def EmpezarViaje(request):

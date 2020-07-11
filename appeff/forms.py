@@ -10,3 +10,8 @@ class ViajeForm(forms.Form):
     conductor.widget.attrs.update({'class': 'form-control'})
     distrito.widget.attrs.update({'class': 'form-control'})
     destino.widget.attrs.update({'class': 'form-control'})
+
+class ListForm(forms.ModelForm):
+    class Meta:
+        model = Viaje
+        fields = ["id", "viajero", "conductor", "distrito", "destino", "precio", "status", "puntuacion"]
