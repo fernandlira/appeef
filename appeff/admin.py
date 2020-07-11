@@ -19,7 +19,7 @@ class ViajeAdmin(admin.ModelAdmin):
         "destino",
         "precio",
         "puntuacion",
-        "status",
+        "get_status",
     ]
 
     def get_status(self, obj):
@@ -27,7 +27,7 @@ class ViajeAdmin(admin.ModelAdmin):
             return "Activo"
         return "Inactivo"
 
-    get_status.short_description = "status"
+    get_status.short_description = "Estado"
 
 
 class FavoritoAdmin(admin.ModelAdmin):
