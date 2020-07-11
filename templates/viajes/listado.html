@@ -1,0 +1,92 @@
+{% extends 'base-standard.html' %}
+{% load static %}
+
+{% block title%} Listado de Viajes {% endblock %}
+{% block content %}
+
+<a class="btn btn-primary" href="../ver-asistencias" role="button">Atras</a>
+<h1>Asistencias y notas de estudiante <span class="text-info">{{alumno.name}}</span> </h1>
+<p>Haga click en la fecha para ver las notas de ese día</p>
+<table  id="example" class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Conductor</th>
+        <th scope="col">Distrito</th>
+        <th scope="col">Destino</th>
+        <th scope="col">Precio</th>
+        <th scope="col" class="no-sort">Status</th>
+        <th scope="col" class="no-sort">Puntuación</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        {%for viaje in viajes%}
+
+        <tr>
+            <th scope="row">{{viaje.id}}</th>
+            <td><a href="../ver-notas/{{asistencia.id}}">{{viaje.conductor}}</a></td>
+            <td>{{viaje.distrito}}</td> 
+            <td>{{viaje.destino}}</td> 
+            <td>{{viaje.precio}}</td> 
+            <td>{%if viaje.status == '0' %}
+                <span class="badge badge-warning">Pendiente</span>
+                {% elif viaje.status == '1' %}
+                <span class="badge badge-primary">En Camino</span>
+                {% elif viaje.status == '2' %}
+                <span class="badge badge-success">Finalizado</span>
+                {% else %}
+                <span class="badge badge-danger">Cancelado</span>
+                {% endif %}</td> 
+                <td>{%if viaje.status == '2'  %}
+                    {%if viaje.puntuacion is not null  %}
+                    {{viaje.puntuacion}}
+                    {% else %}
+                    <a class="btn btn-primary" href="../{{asistencia.id}}/comentar" role="button">Puntuar</a>
+                    {% endif %}
+                    {% endif %}
+                </td> 
+            <!-- <td>{%if asistencia.asistencia == 'Asistio' %}
+                <span class="badge badge-success">Asistente</span>
+                {% elif asistencia.asistencia == 'Justificada' %}
+                <span class="badge badge-warning">Justificada</span>
+                {% else %}
+                <span class="badge badge-danger">Inasistente</span>
+                {% endif %}
+                </td> -->
+                <!-- <td>{%if asistencia.asistencia == 'Asistio' or asistencia.asistencia == 'Justificada'%}-{% else %}<a class="btn btn-primary" href="../{{asistencia.id}}/comentar" role="button">Justificar asistencia</a>{% endif %}</td> -->
+          </tr>
+
+
+
+    {%endfor%}
+      
+    </tbody>
+  </table>
+
+  {%block js %} 
+
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable({
+      "columnDefs": [ {
+          "targets": 'no-sort',
+          "orderable": false,
+    } ]
+  });
+} );</script>
+{% endblock %}
+
+{%endblock%}
+
+<!-- Vendor 
+<script src="{% static 'static/assets/js/vendor.min.js' %}"></script>
+js -->
+
+<!-- App js
+<script src="{% static 'static/assets/js/app.min.js' %}"></script>
+ -->
+</body>
+
