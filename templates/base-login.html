@@ -85,6 +85,12 @@
                                     {% endif %}
                                 </li>
 
+                                <li>
+                                    {% if perms.appeff.view_favoritos %}
+                                    <a href="{% url 'appeff:listar-favoritos' %}">ver viajes Favoritos</a>
+                                    {% endif %}
+                                </li>
+
                             </ul>
                         </li>
 

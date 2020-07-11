@@ -12,26 +12,22 @@
 
                     <p class="text-muted mb-4 mt-3">Registro Viajes</p>
 
-                        {% for viaje in viajes %}
+                        {% for favorito in favoritos %}
                             <table class="table table-striped table-dark">
                                 <thead>
                                     <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Viajero</th>
-                                    <th scope="col">Conductor</th>
                                     <th scope="col">Distrito</th>
                                     <th scope="col">Destino</th>
-                                    <th scope="col">Puntuacion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                    <th scope="row">{{ viaje.id }}</th>
-                                    <td>{{ viaje.viajero }}</td>
-                                    <td>{{ viaje.conductor }}</td>
-                                    <td>{{ viaje.distrito }}</td>
-                                    <td>{{ viaje.destino }}</td>
-                                    <td>{{ viaje.puntuacion }}</td>
+                                    <th scope="row">{{ favorito.id }}</th>
+                                    <td>{{ favorito.user }}</td>
+                                    <td>{{ favorito.distrito }}</td>
+                                    <td>{{ favorito.destino }}</td>
                                     </tr>
                                 </tbody>
                             </table>
