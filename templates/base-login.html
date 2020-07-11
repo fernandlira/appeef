@@ -70,22 +70,22 @@
                           
                                 <li>
                                     {% if perms.appeff.change_favorito %}
-                                    <a href="{% url 'appeff:empezar.viaje' %}">INICIAR VIAJE</a>
+                                    <a href="empezar-viaje">INICIAR VIAJE</a>
                                     {% endif %}
                                 </li>
                                 <li>
                                     {% if perms.appeff.change_viaje %}
-                                    <a href="{% url 'appeff:aceptar.viaje' %}">ACEPTAR VIAJE</a>
+                                    <a href="aceptar-viaje/{{user.id}}">ACEPTAR VIAJE</a>
                                     {% endif %}
                                 </li>
                                 <li>
                                     {% if perms.appeff.change_viaje %}
-                                    <a href="{% url 'appeff:culminar.viaje' %}">CULMINAR VIAJE</a>
+                                    <a href="culminar-viaje/{{user.id}}">CULMINAR VIAJE</a>
                                     {% endif %}
                                 </li>
                                 <li>
                                     {% if perms.appeff.change_viaje %}
-                                    <a href="{% url 'appeff:puntuar.viaje' %}">PUNTUAR VIAJE</a>
+                                    <a href="puntuar-viaje/{{user.id}}">PUNTUAR VIAJE</a>
                                     {% endif %}
                                 </li>
 
