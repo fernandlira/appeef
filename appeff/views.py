@@ -20,3 +20,9 @@ def EmpezarViaje(request):
     else:
         form = ViajeForm
         return render(request, "viajes/empezar.html", {"form": form})
+
+def CulminarViaje(request,id=1):
+    viaje = Viaje.objects.get(pk=id)
+    viaje.status=1
+    print(viaje_conductor_disponibilidad)
+    viaje.save()
