@@ -3,11 +3,11 @@ from .models import Viaje, Auto, Conductor, Favorito
 
 # Register your models here.
 class ConductorAdmin(admin.ModelAdmin):
-    list_display = ["id", "disponibilidad", "puntuacion"]
+    list_display = ["id","user", "disponibilidad", "puntuacion"]
 
 
 class AutoAdmin(admin.ModelAdmin):
-    list_display = ["id", "user", "modelo"]
+    list_display = ["id", "user", "modelo", "placa", "anno"]
 
 
 class ViajeAdmin(admin.ModelAdmin):
