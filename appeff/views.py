@@ -43,10 +43,25 @@ def EmpezarViaje(request):
         if form.is_valid():
             viaje = Viaje(viajero=request.user,distrito=form.cleaned_data['distrito'],destino=form.cleaned_data['destino'])
             viaje.save()
+            if form.cleaned_data['favorita'] == '1':
+                favorito = Favorito(user=request.user,distrito=form.cleaned_data['distrito'],destino=form.cleaned_data['destino'])
+                favorito.save()
             return redirect('appeff:index')
     else:
         form = ViajeForm
         return render(request, "viajes/empezar.html", {"form": form})
+
+@require_http_methods(["GET", "POST"])
+def EmpezarViajeFavorito(request):
+    if request.method == "POST":
+        form = request.POST.copy()
+        favorita = Favorito.objects.get(pk=form.get('favorita'))
+        viaje = Viaje(viajero=request.user,distrito=favorita.distrito,destino=favorita.destino)
+        viaje.save()
+        return redirect('appeff:index')
+    else:
+        favoritas = Favorito.objects.filter(user=request.user)
+        return render(request, "viajes/empezar-favorito.html", {"favoritas": favoritas})
 
 @require_http_methods(["GET", "POST"])
 def AceptarViaje(request,id=1):
