@@ -7,11 +7,12 @@ class ViajeForm(forms.Form):
     distrito = forms.ChoiceField(choices=DISTRITOS, required=True)
     destino = forms.CharField(required=True)
     
-    conductor.widget.attrs.update({'class': 'form-control'})
+    #conductor.widget.attrs.update({'class': 'form-control'})
     distrito.widget.attrs.update({'class': 'form-control'})
     destino.widget.attrs.update({'class': 'form-control'})
 
-class ListForm(forms.ModelForm):
-    class Meta:
-        model = Viaje
-        fields = ["id", "viajero", "conductor", "distrito", "destino", "precio", "status", "puntuacion"]
+class AceptarForm(forms.Form):
+    precio = forms.FloatField(required=True)
+
+    #conductor.widget.attrs.update({'class': 'form-control'})
+    precio.widget.attrs.update({'class': 'form-control'})

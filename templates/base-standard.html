@@ -18,9 +18,11 @@
     {% block css %} {% endblock %}
 </head>
 
-<body class="authentication-bg authentication-bg-pattern">
 
-      <!-- Navigation Bar-->
+<body>
+    <div class="container">
+
+         <!-- Navigation Bar-->
       <header id="topnav">
 
         <!-- Topbar Start -->
@@ -68,23 +70,27 @@
                                 <i class="fe-airplay"></i>Opciones <div class="arrow-down"></div></a>
                             <ul class="submenu">
                                 <li>
-                                    {% if perms.appeff.change_favoritos %}
+                                    {% if perms.appeff.view_viaje %}
                                     <a href="{% url 'appeff:empezar-viaje' %}">Empezar viaje</a>
                                     {% endif %}
                                 </li>
-
+                                
                                 <li>
-                                    {% if perms.appeff.change_viaje %}
-                                    <a href="#">Iniciar Viaje</a>
+                                    {% if perms.appeff.view_auto %}
+                                    <a href="#">Registrar auto</a>
                                     {% endif %}
                                 </li>
 
                                 <li>
                                     {% if perms.appeff.view_viaje %}
-                                    <a href="{% url 'appeff:listar-viaje' %}">ver viajes</a>
+                                    <a href="#">ver viaje</a>
                                     {% endif %}
                                 </li>
-
+                                <li>
+                                    {% if perms.appeff.view_auto %}
+                                    <a href="#">ver puntuacion</a>
+                                    {% endif %}
+                                </li>
                             </ul>
                         </li>
 
@@ -102,12 +108,11 @@
     </header>
     <!-- End Navigation Bar-->
 
-    {% block content %} {% endblock %}
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    {% block js %}
-    
-    {% endblock %}
+{%block content%} {%endblock%}
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+{% block js %}{% endblock %}
 </body>
-
 </html>

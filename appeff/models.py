@@ -40,8 +40,8 @@ class Viaje(models.Model):
     conductor = models.ForeignKey(Conductor, blank=True, null=True, on_delete=models.CASCADE)
     distrito = models.CharField(max_length=60,choices=DISTRITOS,blank=False, null=False)
     destino = models.CharField(max_length=255,blank=False, null=False)
-    precio = models.IntegerField(default=0)
-    status = models.BooleanField(default=0)
+    precio = models.FloatField(default=0)
+    status = models.CharField(default="0", max_length=2) #0 pendiente - 1 en_camino 2 finalizado 3 cancelado
     puntuacion = models.IntegerField(null=True, blank=True, choices=PUNTOS)
 
     class Meta:
