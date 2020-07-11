@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%} Iniciar Viaje {% endblock %}
+{% block content %}
+
+<div class="account-pages mt-5 mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="" styles = "width:1000px;">
+
+                    <p class="text-muted mb-4 mt-3">Registro Viajes</p>
+
+                        {% for favorito in favoritos %}
+                            <table class="table table-striped table-dark">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Viajero</th>
+                                    <th scope="col">Distrito</th>
+                                    <th scope="col">Destino</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <th scope="row">{{ favorito.id }}</th>
+                                    <td>{{ favorito.user }}</td>
+                                    <td>{{ favorito.distrito }}</td>
+                                    <td>{{ favorito.destino }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        
+                        {% endfor %}
+                       
+
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</div>
+<!-- end page -->
+{%endblock%}
+
+<!-- Vendor 
+<script src="{% static 'static/assets/js/vendor.min.js' %}"></script>
+js -->
+
+<!-- App js
+<script src="{% static 'static/assets/js/app.min.js' %}"></script>
+ -->
+</body>
+

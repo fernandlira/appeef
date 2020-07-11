@@ -81,7 +81,13 @@
 
                                 <li>
                                     {% if perms.appeff.view_viaje %}
-                                    <a href="#">ver viajes</a>
+                                    <a href="{% url 'appeff:listar-viaje' %}">ver viajes</a>
+                                    {% endif %}
+                                </li>
+
+                                <li>
+                                    {% if perms.appeff.view_favoritos %}
+                                    <a href="{% url 'appeff:listar-favoritos' %}">ver viajes Favoritos</a>
                                     {% endif %}
                                 </li>
 

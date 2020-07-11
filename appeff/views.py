@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import View
 from django.views.decorators.http import require_http_methods
-from .models import Conductor, Viaje
+from .models import Conductor, Viaje, Favorito
 from .forms import ViajeForm, AceptarForm, PuntuarForm
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import redirect
 from django.db.models import Avg
@@ -19,6 +19,22 @@ def listadoViajesU(request):
 
 def login(request):
     return render(request, "forms/signIn.html", {})
+
+def listar_viajes(request, id=1):
+    viajes = Viaje.objects.filter(viajero=request.user)
+    return render(
+        request,
+        "viajes/listado.html",
+        { "viajes": viajes },
+    )
+
+def listar_viajes_favoritos(request, id=1):
+    favoritos = Favorito.objects.filter(user=request.user)
+    return render(
+        request,
+        "viajes/lista-viajes.html",
+        { "favoritos": favoritos },
+    )
 
 @require_http_methods(["GET", "POST"])
 def EmpezarViaje(request):
