@@ -42,7 +42,7 @@ class Viaje(models.Model):
         verbose_name_plural = "Viajes"
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 class Favorito(models.Model):
     id = models.AutoField(primary_key=True)
