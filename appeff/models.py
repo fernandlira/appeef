@@ -26,15 +26,16 @@ class Auto(models.Model):
 
 
 class Viaje(models.Model):
-    STATUS = ((1, "Malo"), (2, "Regular"), (3, "Neutro"), (4, "Bueno"), (5, "Excelente"))
+    PUNTOS = ((1, "Malo"), (2, "Regular"), (3, "Neutro"), (4, "Bueno"), (5, "Excelente"))
     DISTRITOS = (("LIMA_CERCADO","LIMA CERCADO"),("ATE","ATE"),("BARRANCO","BARRANCO"),("LINCE","LINCE"),("MIRAFLORES","MIRAFLORES"))
     id = models.AutoField(primary_key=True)
     viajero = models.ForeignKey(User, on_delete=models.CASCADE)
     conductor = models.ForeignKey(Conductor, blank=True, null=True, on_delete=models.CASCADE)
-    distrito = models.CharField(max_length=60,choices=STATUS)
-    destino = models.CharField(max_length=255)
+    distrito = models.CharField(max_length=60,choices=DISTRITOS,blank=False, null=False)
+    destino = models.CharField(max_length=255,blank=False, null=False)
     precio = models.IntegerField(default=0)
-    puntuacion = models.IntegerField(null=True, blank=True, choices=STATUS)
+    status = models.BooleanField(default=0)
+    puntuacion = models.IntegerField(null=True, blank=True, choices=PUNTOS)
 
     class Meta:
         verbose_name = "Viaje"
@@ -42,3 +43,16 @@ class Viaje(models.Model):
 
     def __str__(self):
         return self.id
+
+class Favorito(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    distrito = models.CharField(max_length=60, blank=False, null=False)
+    destino = models.CharField(max_length=255, blank=False, null=False)
+
+    class Meta:
+        verbose_name = "Favorito"
+        verbose_name_plural = "Favoritos"
+
+    def __str__(self):
+        return self.destino
