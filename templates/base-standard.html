@@ -67,30 +67,9 @@
 
                         <li class="has-submenu">
                             <a href="#">
-                                <i class="fe-airplay"></i>Opciones <div class="arrow-down"></div></a>
+                    
                             <ul class="submenu">
-                                <li>
-                                    {% if perms.appeff.view_viaje %}
-                                    <a href="{% url 'appeff:empezar-viaje' %}">Empezar viaje</a>
-                                    {% endif %}
-                                </li>
-                                
-                                <li>
-                                    {% if perms.appeff.view_auto %}
-                                    <a href="#">Registrar auto</a>
-                                    {% endif %}
-                                </li>
-
-                                <li>
-                                    {% if perms.appeff.view_viaje %}
-                                    <a href="#">ver viaje</a>
-                                    {% endif %}
-                                </li>
-                                <li>
-                                    {% if perms.appeff.view_auto %}
-                                    <a href="#">ver puntuacion</a>
-                                    {% endif %}
-                                </li>
+                
                             </ul>
                         </li>
 

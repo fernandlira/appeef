@@ -4,6 +4,8 @@ from .models import Viaje, Auto, Conductor, Favorito
 # Register your models here.
 class ConductorAdmin(admin.ModelAdmin):
     list_display = ["id","user", "disponibilidad", "puntuacion"]
+    list_filter = ["puntuacion", "user"]
+
 
 
 class AutoAdmin(admin.ModelAdmin):
